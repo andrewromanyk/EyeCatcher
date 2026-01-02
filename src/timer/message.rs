@@ -1,11 +1,9 @@
-mod Message {
-
-    #[derive(Clone, Copy, Debug)]
-    enum Message {
-        Start,
-        Pause,
-        Reset,
-        Change_timer_time(u64),
-    }
-
+#[derive(Clone, Copy, Debug)]
+pub enum Message {
+    Start,
+    Pause,
+    Reset,
+    Second,
+    Seconds(u64),
+    ChangeTimerTime(u64),
 }
