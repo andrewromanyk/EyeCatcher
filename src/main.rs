@@ -1,9 +1,16 @@
+mod state;
 mod timer;
 
-use iced;
+use iced::{self};
 
 fn main() -> iced::Result {
-    iced::application(timer::Timer::default, timer::Timer::update, timer::Timer::view)
-        .subscription(timer::Timer::subscription)
-        .run()
+    iced::application(
+        state::State::default,
+        state::State::update,
+        state::State::view,
+    )
+    .subscription(
+        state::State::subscription
+    )
+    .run()
 }
