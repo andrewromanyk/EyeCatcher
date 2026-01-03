@@ -31,8 +31,11 @@ pub mod tray {
                 loop {
                     interval.tick().await;
                     // TODO: do events
-                    while let Ok(_) = receiver.try_recv() {
-                        let _ = output.send(MainMessage::TrayEvent).await;
+                    while let Ok(a) = receiver.try_recv() {
+                        // currently we send all events and filter them at state handler
+                        if let Err(a) = output.send(MainMessage::TrayEvent(a)).await {
+                            eprintln!("Error getting tray icon event: {}", a)
+                        }
                     }
                 }
             }   
